@@ -1,15 +1,17 @@
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useSharedStore } from '@s/store'
 import { loginService } from '@a/services'
 
 export function useAuth() {
+  const router = useRouter()
   const shared = useSharedStore()
 
   const formInputs = ref({
     identNumber: '',
     password: '',
-    type: '',
-    errorValidated: false
+    repassword: '',
+    type: ''
   })
 
   const onSubmit = async () => {
@@ -18,26 +20,52 @@ export function useAuth() {
       formInputs.value.password !== '' &&
       formInputs.value.type !== ''
     ) {
+      shared.setLoading(true)
       const response = await loginService({
         identification_number: formInputs.value.identNumber,
         password: formInputs.value.password,
         type: Number(formInputs.value.type)
       })
+      shared.setLoading(false)
 
       if (response.authorization?.token) {
         shared.setToken(response.authorization.token)
       }
-      console.log(shared.getToken)
-      return
+
+      if (response.status === 200) {
+        // router.push({ name: 'auth-change-password' })
+      }
+
+      if (response.status === 403) {
+        router.push({ name: 'auth-change-password' })
+      }
     }
-    formInputs.value.errorValidated = true
-    setTimeout(() => {
-      formInputs.value.errorValidated = false
-    }, 1000)
+    shared.setErrorValidated(true)
+    shared.setTimeoutErrorMessages()
+  }
+
+  const onSubmitChangePassword = async () => {
+    if (formInputs.value.password === formInputs.value.repassword) {
+      shared.setLoading(true)
+      const response = await loginService({
+        identification_number: formInputs.value.identNumber,
+        password: formInputs.value.password,
+        type: Number(formInputs.value.type)
+      })
+      shared.setLoading(false)
+
+      if (response.status === 200) {
+        // router.push({ name: 'auth-change-password' })
+      }
+    }
+    shared.setErrorValidated(true)
+    shared.setTimeoutErrorMessages()
   }
 
   return {
     formInputs,
-    onSubmit
+    onSubmit,
+    onSubmitChangePassword,
+    shared
   }
 }

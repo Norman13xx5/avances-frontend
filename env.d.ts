@@ -6,6 +6,12 @@ declare module '@a/views/AuthView.vue' {
   export default component
 }
 
+declare module '@a/views/ChangePasswordView.vue' {
+  import { DefineComponent } from 'vue'
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
+
 declare module '@s/components/InputBase.vue' {
   import { DefineComponent } from 'vue'
   const component: DefineComponent<{}, {}, any>

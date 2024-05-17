@@ -11,6 +11,11 @@ const router: RouteRecordRaw = {
       path: 'login',
       name: 'auth-login',
       component: () => import('@a/views/AuthView.vue')
+    },
+    {
+      path: 'change-password',
+      name: 'auth-change-password',
+      component: () => import('@a/views/ChangePasswordView.vue')
     }
   ]
 }

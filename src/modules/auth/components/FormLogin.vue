@@ -1,7 +1,7 @@
 <script setup>
 import { useAuth } from '@a/composables/useAuth'
 
-const { formInputs, onSubmit } = useAuth()
+const { formInputs, onSubmit, shared } = useAuth()
 </script>
 
 <template>
@@ -21,5 +21,5 @@ const { formInputs, onSubmit } = useAuth()
     </div>
   </form>
 
-  <ModalAlert v-if="formInputs.errorValidated" title="Parametros incorrectos" type="danger"></ModalAlert>
+  <ModalAlert v-if="shared.errorValidated" title="Parametros incorrectos" type="danger"></ModalAlert>
 </template>

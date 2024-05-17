@@ -5,7 +5,10 @@ export const useSharedStore = defineStore('shared', {
   // Definición del estado inicial
   state: (): SharedState => ({
     serverApiUrl: 'http://127.0.0.1:8000/api/',
-    token: localStorage.getItem('token') || ''
+    token: localStorage.getItem('token') || '',
+    loading: false,
+    errorValidated: false,
+    errorMessages: ''
   }),
   // Getters
   getters: {
@@ -18,6 +21,20 @@ export const useSharedStore = defineStore('shared', {
     setToken(token: string) {
       localStorage.setItem('token', token)
       this.token = token
+    },
+    setLoading(loading: boolean) {
+      this.loading = loading
+    },
+    setErrorValidated(errorValidated: boolean) {
+      this.errorValidated = errorValidated
+    },
+    setErrorMessages(errorMessages: string) {
+      this.errorMessages = errorMessages
+    },
+    setTimeoutErrorMessages() {
+      setTimeout(() => {
+        this.errorValidated = false
+      }, 1000)
     }
   }
 })
