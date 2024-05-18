@@ -10,7 +10,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@s': fileURLToPath(new URL('./src/modules/shared', import.meta.url)),
-      '@a': fileURLToPath(new URL('./src/modules/auth', import.meta.url))
+      '@a': fileURLToPath(new URL('./src/modules/auth', import.meta.url)),
+      '@u': fileURLToPath(new URL('./src/modules/user', import.meta.url))
     }
   }
 })

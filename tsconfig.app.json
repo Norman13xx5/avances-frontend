@@ -10,7 +10,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@s/*": ["./src/modules/shared/*"],
-      "@a/*": ["./src/modules/auth/*"]
+      "@a/*": ["./src/modules/auth/*"],
+      "@u/*": ["./src/modules/user/*"]
     }
   }
 }

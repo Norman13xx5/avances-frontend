@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSharedStore } from '@s/store'
-import { loginService } from '@a/services'
+import { loginService, changePassword } from '@a/services'
 
 export function useAuth() {
   const router = useRouter()
@@ -34,32 +34,38 @@ export function useAuth() {
 
       if (response.status === 200) {
         // router.push({ name: 'auth-change-password' })
+        return 'Excelente'
       }
 
       if (response.status === 403) {
-        router.push({ name: 'auth-change-password' })
+        router.push({
+          name: 'auth-change-password',
+          params: { id: response.authorization?.identification_number }
+        })
       }
     }
     shared.setErrorValidated(true)
     shared.setTimeoutErrorMessages()
   }
 
-  const onSubmitChangePassword = async () => {
-    if (formInputs.value.password === formInputs.value.repassword) {
+  const onSubmitChangePassword = async (id: string) => {
+    if (
+      (formInputs.value.password !== '' && formInputs.value.repassword !== '') ||
+      formInputs.value.password === formInputs.value.repassword
+    ) {
       shared.setLoading(true)
-      const response = await loginService({
-        identification_number: formInputs.value.identNumber,
-        password: formInputs.value.password,
-        type: Number(formInputs.value.type)
+      const response = await changePassword({
+        identification_number: id,
+        password: formInputs.value.password
       })
       shared.setLoading(false)
-
-      if (response.status === 200) {
-        // router.push({ name: 'auth-change-password' })
+      if (response.status === 201) {
+        router.push({ name: 'template' })
       }
     }
     shared.setErrorValidated(true)
     shared.setTimeoutErrorMessages()
+    return
   }
 
   return {
