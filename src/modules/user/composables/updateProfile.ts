@@ -1,11 +1,9 @@
 import { ref } from 'vue'
 import { useSharedStore } from '@s/store'
-import { useRouter } from 'vue-router'
-import { updateProfile as updateProfileService, logOut as logOutService } from '@u/services'
+import { updateProfile as updateProfileService } from '@u/services'
 
 export function updateProfile() {
   const shared = useSharedStore()
-  const router = useRouter()
 
   const formInputs = ref({
     identNumber: '',
@@ -52,16 +50,5 @@ export function updateProfile() {
     }
   }
 
-  const LogOut = async () => {
-    shared.setLoading(true)
-    const response = await logOutService()
-    shared.setLoading(false)
-    if (response.status === 200) {
-      router.push({
-        name: 'auth-login'
-      })
-    }
-  }
-
-  return { formInputs, onSubmit, shared, LogOut }
+  return { formInputs, onSubmit, shared }
 }

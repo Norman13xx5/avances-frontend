@@ -32,7 +32,7 @@ export interface DataChangePassword {
   password: string
 }
 
-export interface ResposeChangePassword {
+export interface Respose {
   message: string
   status: number
 }

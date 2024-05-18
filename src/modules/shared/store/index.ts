@@ -7,6 +7,7 @@ export const useSharedStore = defineStore('shared', {
     serverApiUrl: 'http://127.0.0.1:8000/api/',
     token: localStorage.getItem('token') || '',
     loading: false,
+    modal: false,
     errorValidated: false,
     errorMessages: ''
   }),
@@ -24,6 +25,9 @@ export const useSharedStore = defineStore('shared', {
     },
     setLoading(loading: boolean) {
       this.loading = loading
+    },
+    setModal() {
+      this.modal = !this.modal
     },
     setErrorValidated(errorValidated: boolean) {
       this.errorValidated = errorValidated

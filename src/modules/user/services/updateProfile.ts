@@ -8,9 +8,7 @@ import type {
 
 export async function updateProfile(payload: DataUpdateProfile): Promise<ResponseUpdateProfile> {
   try {
-    const { identification_number, ...data } = payload
-    console.log(data)
-    console.log(identification_number)
+    const { identification_number } = payload
     const response = await coreApi().put(`user/${identification_number}`, payload)
 
     return {

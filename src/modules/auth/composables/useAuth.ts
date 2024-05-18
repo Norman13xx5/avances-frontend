@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSharedStore } from '@s/store'
-import { loginService, changePassword } from '@a/services'
+import { loginService, changePassword, logOut } from '@a/services'
 
 export function useAuth() {
   const router = useRouter()
@@ -33,8 +33,7 @@ export function useAuth() {
       }
 
       if (response.status === 200) {
-        // router.push({ name: 'auth-change-password' })
-        return 'Excelente'
+        router.push({ name: 'user-home' })
       }
 
       if (response.status === 403) {
@@ -43,6 +42,7 @@ export function useAuth() {
           params: { id: response.authorization?.identification_number }
         })
       }
+      return
     }
     shared.setErrorValidated(true)
     shared.setTimeoutErrorMessages()
@@ -68,10 +68,23 @@ export function useAuth() {
     return
   }
 
+  const closeSession = async () => {
+    shared.setLoading(true)
+    const response = await logOut()
+    shared.setLoading(false)
+    localStorage.removeItem('token')
+    if (response.status === 200) {
+      router.push({
+        name: 'auth-login'
+      })
+    }
+  }
+
   return {
     formInputs,
     onSubmit,
     onSubmitChangePassword,
+    closeSession,
     shared
   }
 }

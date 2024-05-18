@@ -1,24 +1,25 @@
 import axios, { AxiosError } from 'axios'
 import { coreApi } from '@/api/coreApi'
-import type { ResponseLogin, DataLogin } from '@a/services/interfaces/authServices'
+import type {
+  DataUpdateHistory,
+  ResponseUpdateHistory
+} from '../../history/services/interfaces/history'
 
-export async function loginService(payload: DataLogin): Promise<ResponseLogin> {
+export async function updateHistory(payload: DataUpdateHistory): Promise<ResponseUpdateHistory> {
   try {
-    const response = await coreApi().post('login', payload)
+    const { id, ...updateData } = payload
+    const response = await coreApi().put(`histories/${id}`, updateData)
 
     return {
       message: response.data.message,
-      authorization: response.data.authorization,
-      status: response.status
+      status: response.data.status
     }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError
       if (axiosError.response?.status === 403) {
-        console.log(axiosError.response?.data)
         return {
           message: 'La contraseña no ha sido modificada',
-          authorization: (axiosError.response?.data as any)?.authorization,
           status: axiosError.response?.status
         }
       }

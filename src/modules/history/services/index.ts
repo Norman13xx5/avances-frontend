@@ -1,0 +1,5 @@
+export * from './confirmAssistance'
+export * from './createHistory'
+export * from './getHistories'
+export * from './getHistoryPatient'
+export * from './updateHistory'

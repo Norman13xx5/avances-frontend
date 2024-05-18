@@ -2,15 +2,15 @@ import type { RouteRecordRaw } from 'vue-router'
 
 const router: RouteRecordRaw = {
   path: '/',
-  name: 'profile',
-  redirect: { name: 'profile' },
+  name: 'user',
+  redirect: { name: 'user-home' },
 
-  component: () => import('@u/layout/UserLayout.vue'),
+  component: () => import('@u/layout/userLayout.vue'),
   children: [
     {
-      path: 'profile',
-      name: 'profile',
-      component: () => import('@u/views/ProfileView.vue')
+      path: '/user',
+      name: 'user-home',
+      component: () => import('@u/views/userView.vue')
     }
   ]
 }

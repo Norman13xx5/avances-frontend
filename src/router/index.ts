@@ -2,24 +2,20 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import authRoutes from '@a/router'
 import userRoutes from '@u/router'
+import historyRoutes from '@h/router'
 
 const routes = [
   // AUTH
   {
     ...authRoutes
   },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: () => import('@a/views/DashboardView.vue')
-  },
-  {
-    path: '/template',
-    name: 'template',
-    component: () => import('@a/views/TemplateView.vue')
-  },
+  // USER
   {
     ...userRoutes
+  },
+  // HISTORY
+  {
+    ...historyRoutes
   },
   // 404
   {

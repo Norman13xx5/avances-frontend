@@ -11,7 +11,8 @@
       "@/*": ["./src/*"],
       "@s/*": ["./src/modules/shared/*"],
       "@a/*": ["./src/modules/auth/*"],
-      "@u/*": ["./src/modules/user/*"]
+      "@u/*": ["./src/modules/user/*"],
+      "@h/*": ["./src/modules/history/*"]
     }
   }
 }
