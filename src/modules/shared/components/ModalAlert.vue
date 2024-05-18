@@ -13,6 +13,8 @@ defineProps({
     required: true
   }
 })
+
+defineEmits(['closeEvent'])
 </script>
 
 <template>

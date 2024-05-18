@@ -60,8 +60,9 @@ export function useAuth() {
       })
       shared.setLoading(false)
       if (response.status === 201) {
-        router.push({ name: 'template' })
+        router.push({ name: 'user-home' })
       }
+      return
     }
     shared.setErrorValidated(true)
     shared.setTimeoutErrorMessages()
@@ -73,10 +74,12 @@ export function useAuth() {
     const response = await logOut()
     shared.setLoading(false)
     localStorage.removeItem('token')
+    localStorage.removeItem('identification_number')
     if (response.status === 200) {
       router.push({
         name: 'auth-login'
       })
+      shared.setModal()
     }
   }
 

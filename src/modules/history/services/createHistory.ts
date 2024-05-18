@@ -4,7 +4,7 @@ import type { DataCreateHistory, ResponseCreateHistory } from '@h/services/inter
 
 export async function createHistory(payload: DataCreateHistory): Promise<ResponseCreateHistory> {
   try {
-    const response = await coreApi().put('histories', payload)
+    const response = await coreApi().post('histories', payload)
 
     return {
       message: response.data.message,
@@ -12,7 +12,7 @@ export async function createHistory(payload: DataCreateHistory): Promise<Respons
     }
   } catch (error: unknown) {
     return {
-      message: 'Error al iniciar sesión, verifique sus credenciales',
+      message: 'Error al crear historial',
       status: 500
     }
   }

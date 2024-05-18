@@ -14,10 +14,6 @@ export interface ResponseCreateHistory {
   status: number
 }
 
-export interface DataGetHistories {
-  professional_id: string
-}
-
 export interface ResponseGetHistories {
   id: number
   patient_id: string

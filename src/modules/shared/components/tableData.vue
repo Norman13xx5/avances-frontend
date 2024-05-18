@@ -5,6 +5,7 @@ defineProps({
         required: true
     }
 })
+defineEmits(['createEvent'])
 </script>
 
 <template>
@@ -12,6 +13,9 @@ defineProps({
         <div class="flex w-full items-center">
             <div class="flex items-center text-3xl text-gray-900 mb-4 mt-2">
                 {{ title }}
+            </div>
+            <div class="ml-auto">
+                <BtnBase type="button" text="Crear Registro" @click="$emit('createEvent')" />
             </div>
         </div>
     </div>

@@ -11,6 +11,11 @@ const router: RouteRecordRaw = {
       path: '/history',
       name: 'history-home',
       component: () => import('@h/views/HistoryView.vue')
+    },
+    {
+      path: '/crear-historia',
+      name: 'history-create',
+      component: () => import('@h/views/CreateView.vue')
     }
   ]
 }

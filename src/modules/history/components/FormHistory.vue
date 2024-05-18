@@ -1,7 +1,7 @@
 <script setup>
-import { updateProfile } from '@u/composables/updateProfile'
+import { useHistories } from '@h/composables/useHistories'
 
-const { formInputs, onSubmit, shared } = updateProfile()
+const { formInputs, onSubmit, shared } = useHistories()
 
 </script>
 
