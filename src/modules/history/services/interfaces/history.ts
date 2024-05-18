@@ -15,13 +15,13 @@ export interface ResponseCreateHistory {
 }
 
 export interface DataGetHistories {
-  professional_id: number
+  professional_id: string
 }
 
 export interface ResponseGetHistories {
   id: number
-  patient_id: number
-  professional_id: number
+  patient_id: string
+  professional_id: string
   patient_info: string
   date_time: string
   consecutive_number: number
@@ -51,7 +51,7 @@ export interface ResponseConfirmAssistance {
 }
 
 export interface DataGetHistoriesPatient {
-  patient_id: number
+  patient_id: string
 }
 
 export interface ResponseGetHistoriesPatient {

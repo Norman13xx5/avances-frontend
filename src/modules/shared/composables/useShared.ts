@@ -15,10 +15,11 @@ export function useShared() {
 
   onBeforeMount(() => {
     const token = localStorage.getItem('token')
-    if (token === null) {
+    const identificationNumber = localStorage.getItem('identification_number')
+    if (token === null || identificationNumber === null) {
       router.push({ name: 'auth-login' })
     } else if (shared.getToken === '') {
-      shared.setToken(token)
+      shared.setToken(token, identificationNumber)
     }
   })
 

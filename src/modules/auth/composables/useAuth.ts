@@ -28,8 +28,8 @@ export function useAuth() {
       })
       shared.setLoading(false)
 
-      if (response.authorization?.token) {
-        shared.setToken(response.authorization.token)
+      if ((response.authorization?.token, response.authorization?.identification_number)) {
+        shared.setToken(response.authorization.token, response.authorization.identification_number)
       }
 
       if (response.status === 200) {

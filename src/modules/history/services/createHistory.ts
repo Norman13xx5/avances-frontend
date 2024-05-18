@@ -1,6 +1,6 @@
 // import axios, { AxiosError } from 'axios'
 import { coreApi } from '@/api/coreApi'
-import type { ResponseCreateHistory, DataCreateHistory } from '@h/services/interfaces/history'
+import type { DataCreateHistory, ResponseCreateHistory } from '@h/services/interfaces/history'
 
 export async function createHistory(payload: DataCreateHistory): Promise<ResponseCreateHistory> {
   try {

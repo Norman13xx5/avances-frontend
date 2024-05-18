@@ -8,7 +8,7 @@ export async function getHistoryPatient(
   payload: DataGetHistoriesPatient
 ): Promise<ResponseGetHistoriesPatient | null> {
   try {
-    const response = await coreApi().get(`histories/${payload.patient_id}`)
+    const response = await coreApi().get(`histories/${payload}`)
     return response.data as ResponseGetHistoriesPatient
   } catch (error: unknown) {
     return null
