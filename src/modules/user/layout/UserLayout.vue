@@ -4,7 +4,7 @@ const layoutComponent = defineAsyncComponent(() => import('@s/components/dashboa
 </script>
 
 <template>
-    <layout-component>
-        <router-view />
-    </layout-component>
+  <layout-component>
+    <router-view />
+  </layout-component>
 </template>
