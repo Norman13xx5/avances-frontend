@@ -3,13 +3,26 @@ import { coreApi } from '@/api/coreApi'
 import type {
   DataUpdateProfile,
   ResponseUpdateProfile,
-  ResponseLogOut
+  ResponseLogOut,
+  ResponseDataUser
 } from '@u/services/interfaces/user'
+
+export async function userId(id: string): Promise<ResponseDataUser> {
+  try {
+    const response = await coreApi().get(`user/${id}`)
+    return response
+  } catch (error: unknown) {
+    return {
+      message: 'Error al iniciar sesión, verifique sus credenciales',
+      status: 404
+    }
+  }
+}
 
 export async function updateProfile(payload: DataUpdateProfile): Promise<ResponseUpdateProfile> {
   try {
-    const { identification_number } = payload
-    const response = await coreApi().put(`user/${identification_number}`, payload)
+    const { id } = payload
+    const response = await coreApi().put(`user/${id}`, payload)
 
     return {
       message: response.data.message,

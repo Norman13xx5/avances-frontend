@@ -1,4 +1,5 @@
 export interface DataCreateHistory {
+  identNumber: string
   patient_id: number
   patient_info: string
   date_time: string

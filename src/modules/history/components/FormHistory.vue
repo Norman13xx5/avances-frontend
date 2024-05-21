@@ -16,8 +16,8 @@ const { formInputs, onSubmit, shared } = useHistories()
                         v-model="formInputs.patientId"></InputBase>
                     <InputBase id="patientInfo" name="patientInfo" type="text" placeholder="Información del paciente"
                         label="Información del paciente" v-model="formInputs.patientInfo"></InputBase>
-                    <InputBase id="dateTime" name="dateTime" type="datetime" placeholder="Fecha y hora"
-                        label="Fecha y hora" v-model="formInputs.dateTime"></InputBase>
+                    <InputBase id="dateTime" name="dateTime" type="date" placeholder="Fecha y hora" label="Fecha y hora"
+                        v-model="formInputs.dateTime"></InputBase>
                     <InputBase id="patientStatus" name="patientStatus" type="text" placeholder="Estado del paciente"
                         label="Estado del paciente" v-model="formInputs.patientStatus"></InputBase>
                     <InputBase id="medicalHistory" name="medicalHistory" type="text" placeholder="Historial médico"
@@ -26,7 +26,7 @@ const { formInputs, onSubmit, shared } = useHistories()
                         label="Final de evolución" v-model="formInputs.finalEvolution"></InputBase>
                     <InputBase id="proffesionalConceept" name="proffesionalConceept" type="text"
                         placeholder="Concepto Profesional" label="Concepto Profesional"
-                        v-model="formInputs.proffesionalConceept"></InputBase>
+                        v-model="formInputs.proffesionalConcept"></InputBase>
                     <InputBase id="recommendations" name="recommendations" type="text" placeholder="Recomendaciones"
                         label="Recomendaciones" v-model="formInputs.recommendations"></InputBase>
                     <div class="flex justify-between">

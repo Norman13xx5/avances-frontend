@@ -10,13 +10,13 @@ export function useHistories() {
   const arrayHistories = ref()
 
   const formInputs = ref({
-    patient_id: '',
-    patient_info: '',
-    date_time: '',
-    patient_status: '',
-    medical_history: '',
-    final_evolution: '',
-    professional_concept: '',
+    patientId: '',
+    patientInfo: '',
+    dateTime: '',
+    patientStatus: '',
+    medicalHistory: '',
+    finalEvolution: '',
+    proffesionalConcept: '',
     recommendations: ''
   })
 
@@ -26,35 +26,37 @@ export function useHistories() {
 
   const onSubmit = async () => {
     shared.setLoading(true)
+    const identNumber = localStorage.getItem('identification_number')
     if (
-      formInputs.value.patient_id !== '' &&
-      formInputs.value.patient_info !== '' &&
-      formInputs.value.date_time !== '' &&
-      formInputs.value.patient_status !== '' &&
-      formInputs.value.medical_history !== '' &&
-      formInputs.value.final_evolution !== '' &&
-      formInputs.value.professional_concept !== '' &&
+      identNumber !== null &&
+      formInputs.value.patientId !== '' &&
+      formInputs.value.patientInfo !== '' &&
+      formInputs.value.dateTime !== '' &&
+      formInputs.value.patientStatus !== '' &&
+      formInputs.value.medicalHistory !== '' &&
+      formInputs.value.finalEvolution !== '' &&
+      formInputs.value.proffesionalConcept !== '' &&
       formInputs.value.recommendations !== ''
     ) {
       const response = await createHistory({
-        patient_id: Number(formInputs.value.patient_id),
-        patient_info: formInputs.value.patient_info,
-        date_time: formInputs.value.date_time,
-        patient_status: formInputs.value.patient_status,
-        medical_history: formInputs.value.medical_history,
-        final_evolution: formInputs.value.final_evolution,
-        professional_concept: formInputs.value.professional_concept,
+        identNumber: identNumber,
+        patient_id: Number(formInputs.value.patientId),
+        patient_info: formInputs.value.patientInfo,
+        date_time: formInputs.value.dateTime,
+        patient_status: formInputs.value.patientStatus,
+        medical_history: formInputs.value.medicalHistory,
+        final_evolution: formInputs.value.finalEvolution,
+        professional_concept: formInputs.value.proffesionalConcept,
         recommendations: formInputs.value.recommendations
       })
-      shared.setLoading(false)
+      if (response.status === 201) {
+        redirect('history-home')
+      }
       if (response.status === 500) {
         shared.setErrorValidated(true)
         shared.setTimeoutErrorMessages()
       }
-
-      if (response.status === 201) {
-        redirect('history-home')
-      }
+      shared.setLoading(false)
     }
   }
 

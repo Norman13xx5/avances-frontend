@@ -1,5 +1,7 @@
 <script setup>
-defineProps({
+import { defineProps } from 'vue'
+
+const props = defineProps({
   id: {
     type: String,
     required: false
@@ -17,7 +19,7 @@ defineProps({
 
 <template>
   <div class="relative">
-    <button id="{{ id }}" type="{{ type }}" class="bg-blue-500 text-white rounded-md px-2 py-1">
+    <button :id="id" :type="type" class="bg-blue-500 text-white rounded-md px-2 py-1">
       {{ text }}
     </button>
   </div>
