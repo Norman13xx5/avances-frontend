@@ -1,7 +1,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSharedStore } from '@s/store'
-import { getHistories, createHistory } from '@pah/services'
+import { getHistories, confirmAssistance } from '@pah/services'
 
 export function useHistories() {
   const router = useRouter()
@@ -24,40 +24,22 @@ export function useHistories() {
     router.push({ name: route })
   }
 
-  const onSubmit = async () => {
+  const onSubmit = async (id: number) => {
+    console.log(id)
     shared.setLoading(true)
-    const identNumber = localStorage.getItem('identification_number')
-    if (
-      identNumber !== null &&
-      formInputs.value.patientId !== '' &&
-      formInputs.value.patientInfo !== '' &&
-      formInputs.value.dateTime !== '' &&
-      formInputs.value.patientStatus !== '' &&
-      formInputs.value.medicalHistory !== '' &&
-      formInputs.value.finalEvolution !== '' &&
-      formInputs.value.proffesionalConcept !== '' &&
-      formInputs.value.recommendations !== ''
-    ) {
-      const response = await createHistory({
-        identNumber: identNumber,
-        patient_id: Number(formInputs.value.patientId),
-        patient_info: formInputs.value.patientInfo,
-        date_time: formInputs.value.dateTime,
-        patient_status: formInputs.value.patientStatus,
-        medical_history: formInputs.value.medicalHistory,
-        final_evolution: formInputs.value.finalEvolution,
-        professional_concept: formInputs.value.proffesionalConcept,
-        recommendations: formInputs.value.recommendations
-      })
-      if (response.status === 201) {
-        redirect('history-home')
-      }
-      if (response.status === 500) {
-        shared.setErrorValidated(true)
-        shared.setTimeoutErrorMessages()
-      }
+    const response = await confirmAssistance(id)
+    if (response.status === 200) {
       shared.setLoading(false)
+      console.log('Historia confirmada exitosamente')
+      return
+      //redirect('history')
     }
+    if (response.status === 404) {
+      shared.setLoading(false)
+      console.log('Historia no encontrada o ya confirmada')
+      return
+    }
+    shared.setLoading(false)
   }
 
   onMounted(async () => {
@@ -70,5 +52,5 @@ export function useHistories() {
     shared.setLoading(false)
   })
 
-  return { arrayHistories, redirect, formInputs, onSubmit, shared }
+  return { arrayHistories, redirect, onSubmit, formInputs, shared }
 }

@@ -22,9 +22,6 @@ export function updateProfile() {
     shared.setLoading(true)
 
     const id = localStorage.getItem('identification_number')
-    const typeUser = localStorage.getItem('typeuser')
-    console.log(typeUser)
-
     if (id) {
       try {
         const response = await userId(id)
