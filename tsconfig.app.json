@@ -11,8 +11,12 @@
       "@/*": ["./src/*"],
       "@s/*": ["./src/modules/shared/*"],
       "@a/*": ["./src/modules/auth/*"],
-      "@u/*": ["./src/modules/user/*"],
-      "@h/*": ["./src/modules/history/*"]
+      "@pa/*": ["./src/modules/patients/*"],
+      "@pau/*": ["./src/modules/patients/submodules/user/*"],
+      "@pah/*": ["./src/modules/patients/submodules/history/*"],
+      "@pr/*": ["./src/modules/professionals/*"],
+      "@pru/*": ["./src/modules/professionals/submodules/user/*"],
+      "@prh/*": ["./src/modules/professionals/submodules/history/*"]
     }
   }
 }

@@ -6,4 +6,5 @@ export interface SharedState {
   modal: boolean
   errorValidated: boolean
   errorMessages: string
+  url_sesion: string
 }

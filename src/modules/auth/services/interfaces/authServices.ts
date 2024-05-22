@@ -1,5 +1,6 @@
 export interface ResponseLogin {
   message: string
+  typeUser: string
   authorization?: Authorization
   status: number
 }

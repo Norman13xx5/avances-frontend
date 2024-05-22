@@ -10,7 +10,8 @@ export const useSharedStore = defineStore('shared', {
     loading: false,
     modal: false,
     errorValidated: false,
-    errorMessages: ''
+    errorMessages: '',
+    url_sesion: localStorage.getItem('url_sesion') || ''
   }),
   // Getters
   getters: {
@@ -45,6 +46,10 @@ export const useSharedStore = defineStore('shared', {
       setTimeout(() => {
         this.errorValidated = false
       }, 1000)
+    },
+    setUrlSesion(url_sesion: string) {
+      localStorage.setItem('url_sesion', url_sesion)
+      this.url_sesion = url_sesion
     }
   }
 })

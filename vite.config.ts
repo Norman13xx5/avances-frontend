@@ -11,8 +11,16 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@s': fileURLToPath(new URL('./src/modules/shared', import.meta.url)),
       '@a': fileURLToPath(new URL('./src/modules/auth', import.meta.url)),
-      '@u': fileURLToPath(new URL('./src/modules/user', import.meta.url)),
-      '@h': fileURLToPath(new URL('./src/modules/history', import.meta.url))
+      '@pa': fileURLToPath(new URL('./src/modules/patients', import.meta.url)),
+      '@pau': fileURLToPath(new URL('./src/modules/patients/submodules/user', import.meta.url)),
+      '@pah': fileURLToPath(new URL('./src/modules/patients/submodules/history', import.meta.url)),
+      '@pr': fileURLToPath(new URL('./src/modules/professionals', import.meta.url)),
+      '@pru': fileURLToPath(
+        new URL('./src/modules/professionals/submodules/user', import.meta.url)
+      ),
+      '@prh': fileURLToPath(
+        new URL('./src/modules/professionals/submodules/history', import.meta.url)
+      )
     }
   }
 })

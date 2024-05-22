@@ -1,21 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import authRoutes from '@a/router'
-import userRoutes from '@u/router'
-import historyRoutes from '@h/router'
+import patientRoutes from '@pa/router'
+import professionalRoutes from '@pr/router'
 
 const routes = [
   // AUTH
   {
     ...authRoutes
   },
-  // USER
+  // PATIENT
   {
-    ...userRoutes
+    ...patientRoutes
   },
-  // HISTORY
+  // PROFESSIONAL
   {
-    ...historyRoutes
+    ...professionalRoutes
   },
   // 404
   {

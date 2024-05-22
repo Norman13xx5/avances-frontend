@@ -8,6 +8,7 @@ export async function loginService(payload: DataLogin): Promise<ResponseLogin> {
 
     return {
       message: response.data.message,
+      typeUser: response.data.typeUser,
       authorization: response.data.authorization,
       status: response.status
     }
@@ -18,6 +19,7 @@ export async function loginService(payload: DataLogin): Promise<ResponseLogin> {
         console.log(axiosError.response?.data)
         return {
           message: 'La contraseña no ha sido modificada',
+          typeUser: (axiosError.response?.data as any)?.typeUser,
           authorization: (axiosError.response?.data as any)?.authorization,
           status: axiosError.response?.status
         }
@@ -25,6 +27,7 @@ export async function loginService(payload: DataLogin): Promise<ResponseLogin> {
     }
     return {
       message: 'Error al iniciar sesión, verifique sus credenciales',
+      typeUser: '',
       status: 500
     }
   }

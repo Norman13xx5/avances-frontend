@@ -32,8 +32,11 @@ export function useAuth() {
         shared.setToken(response.authorization.token, response.authorization.identification_number)
       }
 
+      const url = response.typeUser === 'professional' ? 'professional' : 'patients'
+      shared.setUrlSesion(url)
+
       if (response.status === 200) {
-        router.push({ name: 'user-home' })
+        router.push({ name: `${url}-home` })
       }
 
       if (response.status === 403) {
@@ -60,7 +63,7 @@ export function useAuth() {
       })
       shared.setLoading(false)
       if (response.status === 201) {
-        router.push({ name: 'user-home' })
+        router.push({ name: `${localStorage.getItem('url_sesion')}-home` })
       }
       return
     }
@@ -75,6 +78,7 @@ export function useAuth() {
     shared.setLoading(false)
     localStorage.removeItem('token')
     localStorage.removeItem('identification_number')
+    localStorage.removeItem('url_sesion')
     if (response.status === 200) {
       router.push({
         name: 'auth-login'

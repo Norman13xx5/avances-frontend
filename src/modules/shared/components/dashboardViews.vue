@@ -10,7 +10,7 @@ const shared = useSharedStore()
 const { closeSession } = useAuth()
 
 const redirect = (route) => {
-    router.push({ name: route })
+    router.push({ name: `${localStorage.getItem('url_sesion')}-${route}` })
 }
 
 onBeforeMount(() => {
@@ -25,6 +25,13 @@ onBeforeMount(() => {
         <div class="bg-white w-20 flex-shrink-0 border-r border-gray-200 flex-col hidden sm:flex">
 
             <div class="flex mx-auto flex-grow mt-10 flex-col text-gray-400 space-y-4">
+                <button @click="redirect('home')" class="h-10 w-12 rounded-md flex items-center justify-center">
+                    <svg class="h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+                    </svg>
+                </button>
                 <button @click="redirect('user-home')" class="h-10 w-12 rounded-md flex items-center justify-center">
                     <svg class="h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         fill="none" viewBox="0 0 24 24">
@@ -57,7 +64,7 @@ onBeforeMount(() => {
             <div class="flex-grow flex overflow-x-hidden">
 
                 <div class="flex-grow bg-white overflow-y-auto">
-                    <router-view />
+                    <slot></slot>
                 </div>
             </div>
         </div>
